@@ -32,6 +32,15 @@
 <body class="d-flex flex-column h-100">
 
 <h1>hello, this is image coordinates system</h1>
+<form class="m-3" id="product-form" action = "user/selectAll" method="get">
+    <input class="form-control mb-3" name="userName" id="userName" type="search"
+           placeholder="아이디를 입력해주세요"
+           aria-label="Search">
+    <input class="form-control mb-3" name="userPassword" id="userPassword" type="search"
+           placeholder="비밀번호를 입력해주세요"
+           aria-label="Search">
+    <input class="btn btn-primary h-75" type="submit" value="전송">
+</form>
 <div class="container">
     <div class="image-upload" id="image-upload">
 

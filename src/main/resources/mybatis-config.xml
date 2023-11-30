@@ -8,7 +8,10 @@
     </settings>
     <typeAliases>
         <typeAlias type="com.board.model.ImageDTO" alias="imageDTO"/>
+        <typeAlias type="com.board.model.UserDTO" alias="userDTO"/>
+        <typeAlias type="com.board.model.ContentsDTO" alias="contentDTO"/>
     </typeAliases>
     <mappers>
+        <mapper resource="mapper/userMapper.xml"/>
     </mappers>
 </configuration>
