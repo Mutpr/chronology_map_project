@@ -14,11 +14,11 @@ public class CharacterService {
         this.sqlSession = sqlSession;
     }
 
-    public List<CharacterDTO> selectCharactersById(String userid){
-        return sqlSession.selectList(NAMESPACE+"characterSelectByUserId", userid);
+    public List<CharacterDTO> selectCharactersById(int userid){
+        return sqlSession.selectList(NAMESPACE+".characterSelectByUserId", userid);
     }
 
     public CharacterDTO selectedOneChar(int charId){
-        return sqlSession.selectOne(NAMESPACE+"characterSelect", charId);
+        return sqlSession.selectOne(NAMESPACE+".characterSelect", charId);
     }
 }

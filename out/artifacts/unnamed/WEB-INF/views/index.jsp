@@ -34,6 +34,10 @@
         h1{
             margin-bottom: 5px;
         }
+
+        #container{
+            display: none;
+        }
     </style>
 </head>
 <body class="d-flex flex-column h-100" style="margin:20px">
@@ -77,15 +81,17 @@
             $("#register-button").css('display', 'none');
         </script>
         <h4 style="display: inline-block; margin: unset"><%=session.getAttribute("nickname")%></h4> 님, 어서오세요!
-        <br>오늘은 어떤 영웅의 연대기를 만드시겠습니까?
+        <br><h5 id = "chronolgy-info" style="margin: 3px">오늘은 어떤 영웅의 연대기를 만드시겠습니까?</h5><br>
         <c:forEach items="${characterList}" var="list" varStatus="status">
-            <c:out value="${list.name}"/>
+            <a href="/selectOneCharacter/${list.id}"><h4 style="display: inline-block; margin: unset">${list.name}</h4></a>
         </c:forEach>
     </c:when>
 </c:choose>
 
 
-<div class="container">
+<div id="container" class="container" style="<c:if test="${not empty result}" >
+        display: inline-block;
+</c:if>">
     <div class="image-upload" id="image-upload">
 
         <form method="post" enctype="multipart/form-data">

@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -36,10 +33,14 @@ public class HomeController{
                              @ModelAttribute("userNickname") String nickname,
                              @ModelAttribute("id") String id,
                              @ModelAttribute("message") String message) {
-
-    List<CharacterDTO> characterList=characterService.selectCharactersById(id);
-        if(characterList!=null){
-            model.addAttribute("characterList", characterList);
+        try {
+            int idParsing = Integer.parseInt(id);
+            System.out.println(idParsing);
+            List<CharacterDTO> characterList = characterService.selectCharactersById(idParsing);
+            System.out.println(characterList);
+            model.addAttribute("characterList",characterList);
+        }catch (Exception e){
+            e.printStackTrace();
         }
         System.out.println(nickname);
         System.out.println(message);
@@ -47,11 +48,11 @@ public class HomeController{
         session.getAttribute("nickname");
         return "index";
     }
-
-//    public String characterSelect(int charid){
-//
-//    }
-
-
-
+    @GetMapping("selectOneCharacter/{id}")
+    public String characterSelect(@PathVariable int id, Model model){
+        CharacterDTO result = characterService.selectedOneChar(id);
+        System.out.println(result);
+        model.addAttribute("result", result);
+        return "index";
+    }
 }
