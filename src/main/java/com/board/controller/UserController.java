@@ -37,10 +37,18 @@ public class UserController {
     @PostMapping("login")
     public String userLogin(UserDTO userDTO, ModelMap model,RedirectAttributes redirectAttributes, HttpSession session){
         UserDTO result = userService.selectOne(userDTO);
-        redirectAttributes.addAttribute("id", result.getId());
-        redirectAttributes.addAttribute("nickname", result.getNickname());
-        System.out.println(result);
+        if(result != null){
+            redirectAttributes.addAttribute("id", result.getId());
+            redirectAttributes.addAttribute("nickname", result.getNickname());
+            session.setAttribute("nickname", result.getNickname());
+            System.out.println(result);
+        }else{
+            redirectAttributes.addAttribute("nickname", null);
+            redirectAttributes.addAttribute("id", null);
+            redirectAttributes.addFlashAttribute("message", "로그인에 실패햇숴");
+        }
         return "redirect:/";
+
     }
 
     @PostMapping("register")
