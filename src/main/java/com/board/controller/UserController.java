@@ -3,11 +3,14 @@ package com.board.controller;
 import com.board.model.UserDTO;
 import com.board.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,18 +34,20 @@ public class UserController {
         return "redirect:/";
     }
 
-//    @GetMapping("login")
-//    public String userLogin(UserDTO userDTO, RedirectAttributes redirectAttributes, HttpSession session){
-//        UserDTO result = userService.selectOne(userDTO);
-//        System.out.println(result);
-//        return "redirect:/";
-//    }
+    @PostMapping("login")
+    public String userLogin(UserDTO userDTO, ModelMap model,RedirectAttributes redirectAttributes, HttpSession session){
+        UserDTO result = userService.selectOne(userDTO);
+        redirectAttributes.addAttribute("id", result.getId());
+        redirectAttributes.addAttribute("nickname", result.getNickname());
+        System.out.println(result);
+        return "redirect:/";
+    }
 
-//    @GetMapping("register")
-//    public String userRegister(UserDTO user, ModelMap model){
-//        if (!userService.userRegister(user)) {
-//            model.addAttribute("message", "register failed!");
-//        }
-//        return "redirect:/";
-//    }
+    @PostMapping("register")
+    public String userRegister(UserDTO user, ModelMap model, HttpSession session){
+        if (!userService.userRegister(user)) {
+            model.addAttribute("message", "register failed!");
+        }
+        return "redirect:/";
+    }
 }

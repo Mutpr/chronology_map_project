@@ -19,16 +19,24 @@ public class UserService {
         this.sqlSession = sqlSession;
     }
 
-//    public boolean userRegister(UserDTO userDTO){
-//        if(userDTO.getUsername() != null){
-//            sqlSession.insert(NAMESPACE + ".insertUser", userDTO);
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
+    public boolean userRegister(UserDTO userDTO){
+        if(userDTO.getUsername() != null){
+            sqlSession.insert(NAMESPACE + ".insertUser", userDTO);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public List<UserDTO> selectAll(){
         return sqlSession.selectList(NAMESPACE+".selectAll");
+    }
+
+    public UserDTO selectOne(UserDTO userDTO){
+        return sqlSession.selectOne(NAMESPACE+".selectId",userDTO);
+    }
+
+    public UserDTO selectOneByID(int id){
+        return sqlSession.selectOne(NAMESPACE+".selectOneById", id);
     }
 }

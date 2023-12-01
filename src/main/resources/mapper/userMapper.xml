@@ -6,4 +6,10 @@
     <select id="selectAll" resultType="userDTO">
         SELECT * FROM user;
     </select>
+    <insert id="insertUser" parameterType="userDTO">
+        insert into user(username, password, name, nickname) values (#{username}, #{password}, #{name}, #{nickname})
+    </insert>
+    <select id = "selectId" parameterType="userDTO" resultType="userDTO">
+        select id, username, name, nickname from image_map.user where username=#{username} and password=#{password}
+    </select>
 </mapper>

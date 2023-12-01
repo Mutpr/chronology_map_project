@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
@@ -17,7 +18,6 @@
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="${pageContext.request.contextPath}css/styles.css" rel="stylesheet" />
     <style>
         #coordination-position {
             position: absolute;
@@ -27,20 +27,47 @@
             background-color: #000;
             color: #fff;
             font-size: 12px; }
+        #login-form{
+            display: inline-block;
+        }
+
+        h1{
+            margin-bottom: 5px;
+        }
     </style>
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100" style="margin:20px">
 
 <h1>hello, this is image coordinates system</h1>
-<form class="m-3" id="product-form" action = "user/selectAll" method="get">
-    <input class="form-control mb-3" name="userName" id="userName" type="search"
-           placeholder="아이디를 입력해주세요"
-           aria-label="Search">
-    <input class="form-control mb-3" name="userPassword" id="userPassword" type="search"
-           placeholder="비밀번호를 입력해주세요"
-           aria-label="Search">
-    <input class="btn btn-primary h-75" type="submit" value="전송">
-</form>
+<div>
+    <form class="m-3" id="login-form" action = "user/login" method="post" style="margin-bottom: 10px">
+        <input class="form-control mb-3" name="username" id="username" type="text"
+               placeholder="아이디를 입력해주세요"
+               aria-label="Search">
+        <input class="form-control mb-3" name="password" id="password" type="text"
+               placeholder="비밀번호를 입력해주세요"
+               aria-label="Search">
+        <input class="btn btn-primary h-75" type="submit" value="전송">
+    </form><button id="register-button">가입</button>
+
+    <form class="m-3" id="register-form" action = "user/register" method="post" style="display: none; margin-bottom: 10px">
+        <input class="form-control mb-3" name="username" id="register-id" type="search"
+               placeholder="가입할 아이디를 입력해주세요"
+               aria-label="Search">
+        <input class="form-control mb-3" name="password" id="register-password" type="search"
+               placeholder="가입할 비밀번호를 입력해주세요"
+               aria-label="Search">
+        <input class="form-control mb-3" name="name" id="register-name" type="search"
+               placeholder="가입할 이름을 입력해주세요"
+               aria-label="Search">
+        <input class="form-control mb-3" name="nickname" id="register-nickname" type="search"
+               placeholder="가입할 닉네임을 입력해주세요"
+               aria-label="Search">
+        <input class="btn btn-primary h-75" type="submit" value="전송">
+    </form>
+</div>
+
+
 <div class="container">
     <div class="image-upload" id="image-upload">
 
@@ -113,6 +140,14 @@
             document.getElementById('fileName').textContent = null;     //기존 파일 이름 지우기
         }
     }
+
+    $(document).ready(function(){
+        $('#register-button').click(function(){
+            $("#login-form").css('display', 'none')
+            $("#register-button").css('display', 'none')
+            $("#register-form").show();
+        });
+    });
 </script>
 </body>
 </html>
