@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 @Controller
 public class ImageController {
@@ -14,8 +16,5 @@ public class ImageController {
     @Autowired
     public ImageController(ImageService imageService){
         this.imageService = imageService;
-    }
-    public String showImage(){
-        return "showImage";
     }
 }

@@ -7,11 +7,8 @@ import org.springframework.stereotype.Service;
 public class ImageService {
 
     private final String NAMESPACE = "mapper.imageMapper";
-/*    public boolean insertImage(){
 
-    }
-
-    public boolean insertImageCord(){
-
-    }*/
+//    public String getFilePath(){
+//
+//    }
 }

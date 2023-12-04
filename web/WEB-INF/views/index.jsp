@@ -92,6 +92,9 @@
 <div id="container" class="container" style="<c:if test="${not empty result}" >
         display: inline-block;
 </c:if>">
+    <c:if test="${not empty result}">
+       <h4 style="display: inline-block; margin: 2px;">${result.name}</h4>의 연대기
+    </c:if>
     <div class="image-upload" id="image-upload">
 
         <form method="post" enctype="multipart/form-data">
@@ -155,7 +158,6 @@
                 coordinate_position.style.top = e.clientY - coordinate_position.offsetHeight - 10 + 'px';
                 coordinate_position.textContent = "x: {"+e.offsetX +"} y: {"+ e.offsetY+"}";
             })
-
 
             //이미지 업로드 버튼은 숨겨진다
             document.getElementById('image-upload').style.visibility = 'hidden';
