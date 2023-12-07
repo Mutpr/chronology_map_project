@@ -13,14 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class SSHUtil {
     private static final int SFTP_PORT = 22;
 
-    ImageService imageService;
-    String filename;
-    String filepath;
-    public SSHUtil(String filename, String filepath){
-        this.filename = filename;
-        this.filepath = filepath;
-    }
-
     public HashMap<String, String> setSFTPInfo(String resources) throws IOException {
         Properties properties = new Properties();
         HashMap<String, String> info = new HashMap<>();
@@ -41,7 +33,7 @@ public class SSHUtil {
         return info;
     }
 
-    public String showFile(Model model) throws IOException {
+    public void showFile(Model model) throws IOException {
         String resources = "resources/linux.properties";
         HashMap<String, String> info = setSFTPInfo(resources);
 
@@ -81,11 +73,9 @@ public class SSHUtil {
         } catch (JSchException | SftpException e) {
             e.printStackTrace();
             // 에러 처리 로직 추가
-        }
-
-        return "redirect:/"; // 뷰 이름
+        } // 뷰 이름
     }
-    public String sendFile(byte[] data, String filename) throws IOException {
+    public void sendFile(byte[] data, String filename) throws IOException {
         String resources = "resources/linux.properties";
         HashMap<String, String> info = setSFTPInfo(resources);
 
@@ -117,7 +107,6 @@ public class SSHUtil {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "redirect:/";
     }
 
 

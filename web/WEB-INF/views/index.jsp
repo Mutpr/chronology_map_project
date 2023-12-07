@@ -173,6 +173,8 @@
             $("#register-form").show();
         });
     });
+
+    addEventListener('n')
 </script>
 </body>
 </html>
