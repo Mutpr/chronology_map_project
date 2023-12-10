@@ -21,4 +21,13 @@ public class CharacterService {
     public CharacterDTO selectedOneChar(int charId){
         return sqlSession.selectOne(NAMESPACE+".characterSelect", charId);
     }
+
+    public boolean insertCharacterInfo(CharacterDTO characterDTO){
+        if(characterDTO.getName() != null){
+            sqlSession.insert(NAMESPACE+".insertCharacterInfo", characterDTO);
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

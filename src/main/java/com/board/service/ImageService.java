@@ -2,18 +2,28 @@ package com.board.service;
 
 
 import com.board.model.ImageDTO;
-import com.board.model.UserDTO;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 
 @Service
 public class ImageService {
 
+    private SqlSession sqlsession;
     private final String NAMESPACE = "mapper.imageMapper";
     //userid, imageid
-    public void getImageInfo(HashMap<String, Object> params, UserDTO userDTO, ImageDTO imageDTO){
 
+   @Autowired
+   public ImageService(SqlSession sqlsession){
+        this.sqlsession = sqlsession;
     }
 
+    //이미지 정보 캐릭터 번호 기반으로 받아오는 메소드
+    public ImageDTO selectImageByCharacterID(int characterId){
+        return sqlsession.selectOne(NAMESPACE+"selectImageById", characterId);
+    }
+    //이미지 정보 저장하는 메소드
+    public int imageInfoInsert(ImageDTO imageDTO){
+       return sqlsession.insert(NAMESPACE + ".insertUser", imageDTO);
+    }
 }

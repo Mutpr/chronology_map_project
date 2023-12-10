@@ -9,4 +9,7 @@
     <select id = "characterSelect" parameterType="int" resultType="characterDTO">
         select * from image_map.charact where id = #{id}
     </select>
+    <insert id="insertCharacterInfo" parameterType="characterDTO">
+        insert image_map.charact(user_id, name) values(#{user_id}, #{name});
+    </insert>
 </mapper>

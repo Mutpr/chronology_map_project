@@ -2,8 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.contentsMapper">
-    <select id = "characterSelectByUserId">
+<mapper namespace="mapper.">
 
+    <insert id="insertContentsInfo" parameterType="contentDTO">
+        insert into image_map.contents(x, y, title, user_id, description, character_id) values (#{x}, #{y}, #{title}, #{user_id}, #{description}, #{character_id});
+    </insert>
+    <select id="selectAllByCharacterId" parameterType="int" resultType="contentDTO">
+        select * from image_map.contents where character_id=#{character_id} and id=#{id}
     </select>
 </mapper>

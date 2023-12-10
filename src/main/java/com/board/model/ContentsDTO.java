@@ -10,4 +10,5 @@ public class ContentsDTO {
     private String title;
     private int user_id;
     private String description;
+    private int id;
 }

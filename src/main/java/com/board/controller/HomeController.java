@@ -56,8 +56,4 @@ public class HomeController{
         return "index";
     }
 
-    @PostMapping("contentsUpload/{userId}/{characterId}")
-    public String contentsUpload(@PathVariable int userId, @PathVariable int characterId){
-        return "redirect:/";
-    }
 }

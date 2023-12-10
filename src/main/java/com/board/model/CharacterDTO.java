@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class CharacterDTO {
     private int id;
-    private int userid;
+    private int user_id;
     private String name;
 }
