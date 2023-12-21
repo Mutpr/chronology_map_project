@@ -1,6 +1,7 @@
 package com.board.service;
 
 import com.board.model.CharacterDTO;
+import com.board.model.ContentsDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,19 @@ public class CharacterService {
         }else{
             return false;
         }
+    }
+
+    public boolean insertContentsInfo(ContentsDTO contentsDTO){
+        if(contentsDTO.getTitle() != null){
+            sqlSession.insert(NAMESPACE+".insertContentsInfo", contentsDTO);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public List<ContentsDTO> selectAllByCharacterId(int character_id){
+        return sqlSession.selectList(NAMESPACE+".selectAllByCharacterId", character_id);
     }
 }
