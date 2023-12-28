@@ -34,6 +34,7 @@
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.5" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.14" />
           <element id="library" level="project" name="Maven: com.jcraft:jsch:0.1.55" />
+          <element id="library" level="project" name="Maven: commons-net:commons-net:3.3" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="web/web/Web" />

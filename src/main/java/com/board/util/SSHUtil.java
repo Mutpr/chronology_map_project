@@ -75,7 +75,8 @@ public class SSHUtil {
             // 에러 처리 로직 추가
         } // 뷰 이름
     }
-    public void sendFile(byte[] data, String filename) throws IOException {
+    public void sendFile(byte[] data , String filename) throws IOException {
+        //data =
         String resources = "resources/linux.properties";
         HashMap<String, String> info = setSFTPInfo(resources);
 

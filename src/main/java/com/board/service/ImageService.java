@@ -2,6 +2,7 @@ package com.board.service;
 
 
 import com.board.model.ImageDTO;
+import com.board.util.SSHUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class ImageService {
     }
     //이미지 정보 저장하는 메소드
     public int imageInfoInsert(ImageDTO imageDTO){
+        SSHUtil sshutil = new SSHUtil();
+        sshutil.sendFile(imageDTO.);
        return sqlsession.insert(NAMESPACE + ".insertUser", imageDTO);
     }
 }
