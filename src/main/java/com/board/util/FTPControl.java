@@ -1,46 +1,34 @@
 package com.board.util;
 
+import com.board.controller.FileController;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
-import org.apache.commons.net.ftp.FTPSCommand;
 
 import java.io.*;
-import java.net.Socket;
 import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Properties;
 
 class FTPControl{
 
+    public FTPControl(){
 
-    public HashMap<String, String> setSFTPInfo(String resources) throws IOException {
-        Properties properties = new Properties();
-        HashMap<String, String> info = new HashMap<>();
-
-        InputStream reader = getClass().getResourceAsStream(resources);
-        properties.load(reader);
-
-        final String SFTP_HOST = (String) properties.get("SFTP_HOST");
-        final String SFTP_USER = (String) properties.get("SFTP_USER");
-        final String SFTP_PASSWORD = (String) properties.get("SFTP_PASSWORD");
-        final String SFTP_PORT = (String) properties.get("SFTP_PORT");
-
-        info.put("host", SFTP_HOST);
-        info.put("user", SFTP_USER);
-        info.put("password", SFTP_PASSWORD);
-        info.put("port", SFTP_PORT);
-
-        return info;
     }
 
-    public void FTPUploader(String host, int port, String user, String pwd, String revFile) throws IOException {
+    public void FTPUploader(String revFile) throws IOException {
+        String host;
+        int port;
+        String user;
+        String pwd;
+
         FTPClient ftpClient = new FTPClient();
+
         String resources = "resources/linux.properties";
-        HashMap<String, String> info = setSFTPInfo(resources);
+        HashMap<String, String> info = FileController.setSFTPInfo(resources);
+
         host = info.get("host");
         port = Integer.parseInt(info.get("port"));
         user = info.get("user");
