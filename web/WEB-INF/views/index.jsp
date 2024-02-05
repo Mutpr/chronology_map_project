@@ -41,7 +41,6 @@
     </style>
 </head>
 <body class="d-flex flex-column h-100" style="margin:20px">
-
 <h1>hello, this is image coordinates system</h1>
 <div>
 
@@ -80,13 +79,29 @@
             $("#login-form").css('display', 'none');
             $("#register-button").css('display', 'none');
         </script>
+        <script lang = "text/javascript">
+        </script>
         <h4 style="display: inline-block; margin: unset"><%=session.getAttribute("nickname")%></h4> 님, 어서오세요!
-        <br><h5 id = "chronolgy-info" style="margin: 3px">오늘은 어떤 영웅의 연대기를 만드시겠습니까?</h5><br>
-        <c:forEach items="${characterList}" var="list" varStatus="status">
-            <a href="/selectOneCharacter/${list.id}"><h4 style="display: inline-block; margin: unset">${list.name}</h4></a>
+        <br><h5 id = "chronolgy-info" style="margin: 3px">오늘은 어떤 영웅의 연대기를 만드시겠습니까?</h5>
+        <input id="character-input-button" type="button" value="신규작성"><br>
+        <c:forEach items="${characterList}" var="character" varStatus="status">
+            <a id="character-list" href="/selectOneCharacter/${character.id}"><h4 style="display: inline-block; margin: unset">${character.name}</h4></a>
         </c:forEach>
     </c:when>
 </c:choose>
+<form id="character-input" action="character/insert/${}" style="display: none; margin: 10px" method="post">
+    <input aria-label="character-name" id="name" placeholder="캐릭터 이름">
+    <input aria-label="character-create-button" value="생성" type="button">
+</form>
+<script type="text/javascript">
+    $('#character-input-button').click(function(){
+        let character_list=document.querySelectorAll( " [id ^= 'character-list'] ")
+        $(character_list).remove();
+        let character_insert_form = document.getElementById('character-input');
+        $(character_insert_form).show();
+    });
+
+</script>
 
 
 <div id="container" class="container" style="<c:if test="${not empty result}" >

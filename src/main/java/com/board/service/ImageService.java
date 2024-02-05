@@ -23,4 +23,8 @@ public class ImageService {
         return sqlsession.selectOne(NAMESPACE+"selectImageById", characterId);
     }
     //이미지 파일 저장하는 메소드
+
+    public void uploadFile(){
+
+    }
 }
