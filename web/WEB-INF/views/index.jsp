@@ -81,16 +81,18 @@
         </script>
         <script lang = "text/javascript">
         </script>
-        <h4 style="display: inline-block; margin: unset"><%=session.getAttribute("nickname")%></h4> 님, 어서오세요!
+        <h4 style="display: inline-block; margin: unset">
+            <%=session.getAttribute("nickname")%></h4> 님, 어서오세요!
         <br><h5 id = "chronolgy-info" style="margin: 3px">오늘은 어떤 영웅의 연대기를 만드시겠습니까?</h5>
         <input id="character-input-button" type="button" value="신규작성"><br>
-        <c:forEach items="${characterList}" var="character" varStatus="status">
-            <a id="character-list" href="/selectOneCharacter/${character.id}"><h4 style="display: inline-block; margin: unset">${character.name}</h4></a>
-        </c:forEach>
+<%--        <c:forEach items="${characterList}" var="character" varStatus="status">--%>
+<%--            <a id="character-list" href="/selectOneCharacter/${character.id}"><h4 style="display: inline-block; margin: unset">${character.name}</h4></a>--%>
+<%--        </c:forEach>--%>
     </c:when>
 </c:choose>
-<form id="character-input" action="character/insert/${}" style="display: none; margin: 10px" method="post">
-    <input aria-label="character-name" id="name" placeholder="캐릭터 이름">
+
+<form id="character-input" action="character/insert" style="display: none; margin: 10px" method="post">
+    <input aria-label="character-name" id="character-name" placeholder="캐릭터 이름">
     <input aria-label="character-create-button" value="생성" type="button">
 </form>
 <script type="text/javascript">

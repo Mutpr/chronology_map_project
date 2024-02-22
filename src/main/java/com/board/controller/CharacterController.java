@@ -35,12 +35,11 @@ public class CharacterController {
 
 
     //캐릭터 최초 생성시
-    @PostMapping("insert/{user_id}/{name}")
-    public String insertCharacter(ModelMap model, @PathVariable String user_id, @PathVariable String name, CharacterDTO character) {
-        if (characterService.insertCharacterInfo(character)) {
+    @PostMapping("insert")
+    public String insertCharacter(ModelMap model, CharacterDTO character) {
+        if (!characterService.insertCharacterInfo(character)) {
             model.addAttribute("insertCharacterFailMessage", "추가에 실패했습니다!");
-        }
-        return "redirect:/";
+        } return "redirect:/";
     }
 
     //캐릭터에 이미지랑 컨텐츠 최초 생성했을때

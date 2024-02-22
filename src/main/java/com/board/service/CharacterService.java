@@ -43,6 +43,6 @@ public class CharacterService {
     }
 
     public List<ContentsDTO> selectAllByCharacterId(int character_id){
-        return sqlSession.selectList(NAMESPACE+".selectAllByCharacterId", character_id);
+        return sqlSession.selectList(NAMESPACE+".characterSelectByUserId", character_id);
     }
 }

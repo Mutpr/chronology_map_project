@@ -29,23 +29,7 @@ public class HomeController{
         this.characterService = characterService;
     }
     @GetMapping("/")
-    public String printHello(HttpSession session, Model model,
-                             @ModelAttribute("userNickname") String nickname,
-                             @ModelAttribute("id") String id,
-                             @ModelAttribute("message") String message) {
-        try {
-            int idParsing = Integer.parseInt(id);
-            System.out.println(idParsing);
-            List<CharacterDTO> characterList = characterService.selectCharactersById(idParsing);
-            System.out.println(characterList);
-            model.addAttribute("characterList",characterList);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        System.out.println(nickname);
-        System.out.println(message);
-        System.out.println(id);
-        session.getAttribute("nickname");
+    public String printHello(){
         return "index";
     }
     @GetMapping("selectOneCharacter/{id}")
